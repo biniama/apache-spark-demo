@@ -1,0 +1,7 @@
+Hello Spark!
+
+This is my first demo app of using Apache Spark!
+
+Spark! is a cool framework and I hope to use it in a near by project.
+
+Keep Spark!
