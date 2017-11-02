@@ -1,4 +1,4 @@
-###How to Run
+### How to Run
 ```aidl
 ${spark-install-dir}/bin/spark-submit --class com.baeldung.WordCount --master local ${WordCount-MavenProject}/target/apache-spark-1.0-SNAPSHOT.jar ${WordCount-MavenProject}/src/main/resources/spark_example.txt
 ```
