@@ -133,9 +133,95 @@ Keep 1
 
 
 ### SQL
+
+[Nice Documenation with example](https://spark.apache.org/docs/latest/sql-programming-guide.html#datasets-and-dataframes)
+
+### How to execute
 ```
-spark-submit --conf spark.driver.extraClassPath=lib/mysql-connector-java-5.1.44-bin.jar --driver-class-path lib/mysql-connector-java-5.1.44-bin.jar --jars lib/mysql-connector-java-5.1.44-bin.jar --class tech.hasset.DataBaseOperation --master local target/spark-demo-1.0-SNAPSHOT.jar 
+spark-submit --jars lib/mysql-connector-java-5.1.44-bin.jar --driver-class-path lib/mysql-connector-java-5.1.44-bin.jar --conf spark.driver.extraClassPath=lib/mysql-connector-java-5.1.44-bin.jar --class tech.hasset.DataBaseOperation --master local target/spark-demo-1.0-SNAPSHOT.jar  
 ```
 
+### The Log from DatabaseOperation class
+```
+[sparkdemo (master)]$ spark-submit --jars lib/mysql-connector-java-5.1.44-bin.jar --driver-class-path lib/mysql-connector-java-5.1.44-bin.jar --conf spark.driver.extraClassPath=lib/mysql-connector-java-5.1.44-bin.jar --class tech.hasset.DataBaseOperation --master local target/spark-demo-1.0-SNAPSHOT.jar
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+17/11/03 00:12:21 INFO SparkContext: Running Spark version 2.2.0
+17/11/03 00:12:22 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+17/11/03 00:12:23 INFO SparkContext: Submitted application: Java Spark SQL basic example
+17/11/03 00:12:23 INFO SecurityManager: Changing view acls to: biniamasnake
+17/11/03 00:12:23 INFO SecurityManager: Changing modify acls to: biniamasnake
+17/11/03 00:12:23 INFO SecurityManager: Changing view acls groups to: 
+17/11/03 00:12:23 INFO SecurityManager: Changing modify acls groups to: 
+17/11/03 00:12:23 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(biniamasnake); groups with view permissions: Set(); users  with modify permissions: Set(biniamasnake); groups with modify permissions: Set()
+17/11/03 00:12:24 INFO Utils: Successfully started service 'sparkDriver' on port 56150.
+17/11/03 00:12:24 INFO SparkEnv: Registering MapOutputTracker
+17/11/03 00:12:24 INFO SparkEnv: Registering BlockManagerMaster
+17/11/03 00:12:24 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+17/11/03 00:12:24 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+17/11/03 00:12:24 INFO DiskBlockManager: Created local directory at /private/var/folders/pq/c13l8_tn4zv_jww3qjmx_kz40000gn/T/blockmgr-70b28a75-37b0-4bd1-beee-403b85bebd5d
+17/11/03 00:12:24 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+17/11/03 00:12:24 INFO SparkEnv: Registering OutputCommitCoordinator
+17/11/03 00:12:25 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+17/11/03 00:12:26 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://192.168.1.58:4040
+17/11/03 00:12:26 INFO SparkContext: Added JAR file:/Users/biniamasnake/learning/sparkdemo/lib/mysql-connector-java-5.1.44-bin.jar at spark://192.168.1.58:56150/jars/mysql-connector-java-5.1.44-bin.jar with timestamp 1509664346233
+17/11/03 00:12:26 INFO SparkContext: Added JAR file:/Users/biniamasnake/learning/sparkdemo/target/spark-demo-1.0-SNAPSHOT.jar at spark://192.168.1.58:56150/jars/spark-demo-1.0-SNAPSHOT.jar with timestamp 1509664346236
+17/11/03 00:12:26 INFO Executor: Starting executor ID driver on host localhost
+17/11/03 00:12:26 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 56152.
+17/11/03 00:12:26 INFO NettyBlockTransferService: Server created on 192.168.1.58:56152
+17/11/03 00:12:26 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+17/11/03 00:12:26 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 192.168.1.58, 56152, None)
+17/11/03 00:12:26 INFO BlockManagerMasterEndpoint: Registering block manager 192.168.1.58:56152 with 366.3 MB RAM, BlockManagerId(driver, 192.168.1.58, 56152, None)
+17/11/03 00:12:26 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 192.168.1.58, 56152, None)
+17/11/03 00:12:26 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 192.168.1.58, 56152, None)
+17/11/03 00:12:27 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir ('file:/Users/biniamasnake/learning/sparkdemo/spark-warehouse/').
+17/11/03 00:12:28 INFO SharedState: Warehouse path is 'file:/Users/biniamasnake/learning/sparkdemo/spark-warehouse/'.
+17/11/03 00:12:32 INFO StateStoreCoordinatorRef: Registered StateStoreCoordinator endpoint
+constructed jdbc_url: jdbc:mysql://localhost:3306/apache-spark-demo?useSSL=false
+17/11/03 00:12:42 INFO CodeGenerator: Code generated in 1103.081815 ms
+17/11/03 00:12:42 INFO SparkContext: Starting job: show at DataBaseOperation.java:62
+17/11/03 00:12:42 INFO DAGScheduler: Got job 0 (show at DataBaseOperation.java:62) with 1 output partitions
+17/11/03 00:12:42 INFO DAGScheduler: Final stage: ResultStage 0 (show at DataBaseOperation.java:62)
+17/11/03 00:12:42 INFO DAGScheduler: Parents of final stage: List()
+17/11/03 00:12:42 INFO DAGScheduler: Missing parents: List()
+17/11/03 00:12:42 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[2] at show at DataBaseOperation.java:62), which has no missing parents
+17/11/03 00:12:43 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 7.2 KB, free 366.3 MB)
+17/11/03 00:12:43 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 4.0 KB, free 366.3 MB)
+17/11/03 00:12:43 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 192.168.1.58:56152 (size: 4.0 KB, free: 366.3 MB)
+17/11/03 00:12:43 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1006
+17/11/03 00:12:43 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[2] at show at DataBaseOperation.java:62) (first 15 tasks are for partitions Vector(0))
+17/11/03 00:12:43 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks
+17/11/03 00:12:43 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, executor driver, partition 0, PROCESS_LOCAL, 4649 bytes)
+17/11/03 00:12:43 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+17/11/03 00:12:43 INFO Executor: Fetching spark://192.168.1.58:56150/jars/spark-demo-1.0-SNAPSHOT.jar with timestamp 1509664346236
+17/11/03 00:12:43 INFO TransportClientFactory: Successfully created connection to /192.168.1.58:56150 after 107 ms (0 ms spent in bootstraps)
+17/11/03 00:12:43 INFO Utils: Fetching spark://192.168.1.58:56150/jars/spark-demo-1.0-SNAPSHOT.jar to /private/var/folders/pq/c13l8_tn4zv_jww3qjmx_kz40000gn/T/spark-d1348015-47ee-4524-91b9-8ce47969adfb/userFiles-cb4f6eeb-088e-413c-a81d-d3bd7ff5a565/fetchFileTemp6334916715239653640.tmp
+17/11/03 00:12:44 INFO Executor: Adding file:/private/var/folders/pq/c13l8_tn4zv_jww3qjmx_kz40000gn/T/spark-d1348015-47ee-4524-91b9-8ce47969adfb/userFiles-cb4f6eeb-088e-413c-a81d-d3bd7ff5a565/spark-demo-1.0-SNAPSHOT.jar to class loader
+17/11/03 00:12:44 INFO Executor: Fetching spark://192.168.1.58:56150/jars/mysql-connector-java-5.1.44-bin.jar with timestamp 1509664346233
+17/11/03 00:12:44 INFO Utils: Fetching spark://192.168.1.58:56150/jars/mysql-connector-java-5.1.44-bin.jar to /private/var/folders/pq/c13l8_tn4zv_jww3qjmx_kz40000gn/T/spark-d1348015-47ee-4524-91b9-8ce47969adfb/userFiles-cb4f6eeb-088e-413c-a81d-d3bd7ff5a565/fetchFileTemp400402317206581204.tmp
+17/11/03 00:12:44 INFO Executor: Adding file:/private/var/folders/pq/c13l8_tn4zv_jww3qjmx_kz40000gn/T/spark-d1348015-47ee-4524-91b9-8ce47969adfb/userFiles-cb4f6eeb-088e-413c-a81d-d3bd7ff5a565/mysql-connector-java-5.1.44-bin.jar to class loader
+17/11/03 00:12:44 INFO JDBCRDD: closed connection
+17/11/03 00:12:44 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1210 bytes result sent to driver
+17/11/03 00:12:44 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1026 ms on localhost (executor driver) (1/1)
+17/11/03 00:12:44 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+17/11/03 00:12:44 INFO DAGScheduler: ResultStage 0 (show at DataBaseOperation.java:62) finished in 1.074 s
+17/11/03 00:12:44 INFO DAGScheduler: Job 0 finished: show at DataBaseOperation.java:62, took 1.784106 s
+17/11/03 00:12:44 INFO CodeGenerator: Code generated in 48.894574 ms
++------+---+
+|  name|age|
++------+---+
+|Biniam| 29|
+| Kidan| 26|
+|Hasset|  1|
++------+---+
 
-spark-submit --jars lib/mysql-connector-java-5.1.44-bin.jar --driver-class-path lib/mysql-connector-java-5.1.44-bin.jar --conf spark.driver.extraClassPath=lib/mysql-connector-java-5.1.44-bin.jar --class tech.hasset.DataBaseOperation --master local target/spark-demo-1.0-SNAPSHOT.jar 
+17/11/03 00:12:44 INFO SparkUI: Stopped Spark web UI at http://192.168.1.58:4040
+17/11/03 00:12:45 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/11/03 00:12:45 INFO MemoryStore: MemoryStore cleared
+17/11/03 00:12:45 INFO BlockManager: BlockManager stopped
+17/11/03 00:12:45 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/11/03 00:12:45 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/11/03 00:12:45 INFO SparkContext: Successfully stopped SparkContext
+17/11/03 00:12:45 INFO ShutdownHookManager: Shutdown hook called
+17/11/03 00:12:45 INFO ShutdownHookManager: Deleting directory /private/var/folders/pq/c13l8_tn4zv_jww3qjmx_kz40000gn/T/spark-d1348015-47ee-4524-91b9-8ce47969adfb
+[sparkdemo (master)]$ 
+```
