@@ -126,3 +126,12 @@ Keep 1
 17/11/02 16:37:50 INFO ShutdownHookManager: Shutdown hook called
 17/11/02 16:37:50 INFO ShutdownHookManager: Deleting directory /private/var/folders/pq/c13l8_tn4zv_jww3qjmx_kz40000gn/T/spark-385b2666-d095-4dde-a6d4-44bae59d4cd4
 ```
+
+
+### SQL
+```
+spark-submit --conf spark.driver.extraClassPath=lib/mysql-connector-java-5.1.44-bin.jar --driver-class-path lib/mysql-connector-java-5.1.44-bin.jar --jars lib/mysql-connector-java-5.1.44-bin.jar --class tech.hasset.DataBaseOperation --master local target/spark-demo-1.0-SNAPSHOT.jar 
+```
+
+
+spark-submit --jars lib/mysql-connector-java-5.1.44-bin.jar --driver-class-path lib/mysql-connector-java-5.1.44-bin.jar --conf spark.driver.extraClassPath=lib/mysql-connector-java-5.1.44-bin.jar --class tech.hasset.DataBaseOperation --master local target/spark-demo-1.0-SNAPSHOT.jar 
